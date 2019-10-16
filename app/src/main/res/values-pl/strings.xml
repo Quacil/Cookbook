@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cookbook</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="editTitle">Podaj tytuł</string>
+    <string name="editDescription">Podaj opis</string>
+</resources>

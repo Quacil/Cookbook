@@ -5,4 +5,5 @@ import java.io.Serializable
 class Recipe:Serializable {
     var Title = ""
     var Description = ""
+    var Image = ""
 }
