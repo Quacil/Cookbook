@@ -18,7 +18,8 @@ class RecipeFullActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_full)
         val recipe = intent.getSerializableExtra("Item") as Recipe
-        textView.text = recipe.Title
+        titleTextView.text = recipe.Title
+        descriptionTextView.text = recipe.Description
         val imageView = findViewById<ImageView>(R.id.imageView)
         if (recipe.Image.isNotEmpty()) {
             val image = storage.reference.child(recipe.Image)
