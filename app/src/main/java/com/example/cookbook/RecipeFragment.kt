@@ -2,22 +2,20 @@ package com.example.cookbook
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.example.cookbook.data.Recipes
-
-import com.example.cookbook.dummy.DummyContent
-import com.example.cookbook.dummy.DummyContent.DummyItem
+import com.bumptech.glide.Glide
 import com.example.cookbook.model.Recipe
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.firestore.ktx.toObjects
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 /**
  * A fragment representing a list of Items.
@@ -39,7 +37,36 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    var myadapter:MyRecipeRecyclerViewAdapter? = null
+    private fun firebaseData(recyclerView: RecyclerView) {
+
+        val option = FirestoreRecyclerOptions.Builder<Recipe>()
+            .setQuery(recipes, Recipe::class.java)
+            .build()
+        val adapter = object : FirestoreRecyclerAdapter<Recipe, RecipeViewHolder>(option) {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.fragment_recipe, parent, false)
+                return RecipeViewHolder(view)
+            }
+
+            override fun onBindViewHolder(holder: RecipeViewHolder, position: Int, model: Recipe) {
+                holder.mTitleView.text = model.Title
+                holder.mDescriptionView.text = model.PrepTime.toString()
+                val storage = FirebaseStorage.getInstance()
+                if (model.Image.isNotEmpty()) {
+                    val image = storage.reference.child(model.Image)
+                    Glide.with(holder.mView /* context */)
+                        .load(image)
+                        .into(holder.mImageView)
+                }
+                holder.mView.tag = model
+                holder.mView.setOnClickListener { view -> listener?.onListFragmentInteraction(view.tag as Recipe) }
+            }
+        }
+        recyclerView.adapter = adapter
+        adapter.startListening()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +80,7 @@ class RecipeFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = myadapter
+                firebaseData(view)
             }
         }
         return view
@@ -66,12 +93,6 @@ class RecipeFragment : Fragment() {
         } else {
             throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
         }
-        myadapter = MyRecipeRecyclerViewAdapter(ArrayList(), listener)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        recipes.get().addOnSuccessListener { querySnapshot-> myadapter?.replace(querySnapshot.toObjects())}
     }
 
     override fun onDetach() {

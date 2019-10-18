@@ -7,38 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".RecipeEditActivity">
 
-    <ImageView
-        android:id="@+id/editImage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_image_black_240dp"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/editTitle"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editImage" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
+            <ImageView
+                android:id="@+id/editImage"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:src="@drawable/ic_image_black_240dp" />
 
-    <EditText
-        android:id="@+id/editDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="@string/editDescription"
-        app:layout_constraintTop_toBottomOf="@+id/editTitle"
-        tools:layout_editor_absoluteX="98dp" />
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/editTitle"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/editDescription"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveButton"
@@ -48,5 +52,5 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:srcCompat="@drawable/ic_save_white_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

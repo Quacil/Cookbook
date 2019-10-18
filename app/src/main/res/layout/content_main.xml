@@ -9,10 +9,10 @@
     tools:showIn="@layout/activity_main">
 
     <fragment
+        android:id="@+id/recipeListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.example.cookbook.RecipeFragment"
-        android:id="@+id/RecipeList"
         ></fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

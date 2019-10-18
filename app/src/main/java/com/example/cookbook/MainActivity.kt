@@ -2,18 +2,10 @@ package com.example.cookbook
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.cookbook.dummy.DummyContent
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cookbook.model.Recipe
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), RecipeFragment.OnListFragmentInteractionListener {
@@ -26,7 +18,6 @@ class MainActivity : AppCompatActivity(), RecipeFragment.OnListFragmentInteracti
             val intent = Intent(this, RecipeEditActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     override fun onListFragmentInteraction(item: Recipe?) {
