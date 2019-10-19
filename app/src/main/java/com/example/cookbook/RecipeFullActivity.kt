@@ -1,12 +1,9 @@
 package com.example.cookbook
 
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.annotation.GlideModule
 import com.example.cookbook.model.Recipe
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_recipe_full.*
@@ -18,11 +15,11 @@ class RecipeFullActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_full)
         val recipe = intent.getSerializableExtra("Item") as Recipe
-        titleTextView.text = recipe.Title
-        descriptionTextView.text = recipe.Description
+        titleTextView.text = recipe.title
+        descriptionTextView.text = recipe.description
         val imageView = findViewById<ImageView>(R.id.imageView)
-        if (recipe.Image.isNotEmpty()) {
-            val image = storage.reference.child(recipe.Image)
+        if (recipe.image.isNotEmpty()) {
+            val image = storage.reference.child(recipe.image)
             Glide.with(this /* context */)
                 .load(image)
                 .into(imageView)

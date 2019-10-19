@@ -50,11 +50,11 @@ class RecipeFragment : Fragment() {
             }
 
             override fun onBindViewHolder(holder: RecipeViewHolder, position: Int, model: Recipe) {
-                holder.mTitleView.text = model.Title
-                holder.mDescriptionView.text = model.PrepTime.toString()
+                holder.mTitleView.text = model.title
+                holder.mDescriptionView.text = model.prepTime.toString()
                 val storage = FirebaseStorage.getInstance()
-                if (model.Image.isNotEmpty()) {
-                    val image = storage.reference.child(model.Image)
+                if (model.image.isNotEmpty()) {
+                    val image = storage.reference.child(model.image)
                     Glide.with(holder.mView /* context */)
                         .load(image)
                         .into(holder.mImageView)

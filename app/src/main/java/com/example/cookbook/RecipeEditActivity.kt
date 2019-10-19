@@ -22,22 +22,22 @@ class RecipeEditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_recipe_edit)
         saveButton.setOnClickListener { save() }
         editImage.setOnClickListener {
-            var intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, galleryCode)
         }
     }
 
     fun save() {
-        var recipe = Recipe()
-        recipe.Title = editTitle.text.toString()
-        recipe.Description = editDescription.text.toString()
+        val recipe = Recipe()
+        recipe.title = editTitle.text.toString()
+        recipe.description = editDescription.text.toString()
 
         if (imageUri != null) {
             val extension = "jpeg"
             val imageName = UUID.randomUUID().toString() + "." + extension
             val imageRef = storage.reference.child("images/$imageName")
             imageRef.putFile(imageUri!!)
-            recipe.Image = imageRef.path
+            recipe.image = imageRef.path
         }
         val firestore = Firebase.firestore
         firestore.collection("recipes").add(recipe)
@@ -51,7 +51,7 @@ class RecipeEditActivity : AppCompatActivity() {
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
-            imageUri = data!!.data
+            imageUri = data.data
             editImage.setImageURI(imageUri)
         }
     }
