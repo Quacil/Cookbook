@@ -8,4 +8,8 @@
     <string name="notification_title">New recipes</string>
     <string name="notification_content_start">You have </string>
     <string name="notification_content_end"> new recipes!</string>
+    <string name="ingredient_list">Ingredients:</string>
+    <string name="edit_ingredient">Edit ingredient</string>
+    <string name="add_ingredient">Add ingredient</string>
+    <string name="recipe_description_title">Description</string>
 </resources>

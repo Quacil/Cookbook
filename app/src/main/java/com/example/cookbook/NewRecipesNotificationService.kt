@@ -45,7 +45,7 @@ class NewRecipesNotificationService : IntentService("NewRecipesNotificationServi
         var builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_adb_black_24dp)
             .setContentTitle(getString(R.string.notification_title))
-            .setContentText(getString(R.string.notification_content_start) + count.toString() + getString(R.string.notification_content_end))
+            .setContentText(getString(R.string.notification_content_start) + " $count " + getString(R.string.notification_content_end))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         with(NotificationManagerCompat.from(context)) {
             // notificationId is a unique int for each notification that you must define

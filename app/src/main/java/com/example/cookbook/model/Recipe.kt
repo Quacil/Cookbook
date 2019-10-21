@@ -7,6 +7,7 @@ class Recipe:Serializable {
     var title = ""
     var description = ""
     var image = ""
-    var prepTime: Duration = Duration.ZERO
-    var ingredients = arrayListOf<Ingredient>()
+//    var prepTime: Duration = Duration.ZERO
+    var ingredients = mutableListOf<Ingredient>()
+    var tags = mutableListOf<RecipeTag>()
 }

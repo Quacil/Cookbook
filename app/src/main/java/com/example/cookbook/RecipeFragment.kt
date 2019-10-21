@@ -51,7 +51,7 @@ class RecipeFragment : Fragment() {
 
             override fun onBindViewHolder(holder: RecipeViewHolder, position: Int, model: Recipe) {
                 holder.mTitleView.text = model.title
-                holder.mDescriptionView.text = model.prepTime.toString()
+//                holder.mDescriptionView.text = model.prepTime.toString()
                 val storage = FirebaseStorage.getInstance()
                 if (model.image.isNotEmpty()) {
                     val image = storage.reference.child(model.image)
@@ -112,7 +112,6 @@ class RecipeFragment : Fragment() {
      * for more information.
      */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: Recipe?)
     }
 

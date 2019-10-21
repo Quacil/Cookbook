@@ -31,6 +31,16 @@ class RecipeEditActivity : AppCompatActivity() {
         val recipe = Recipe()
         recipe.title = editTitle.text.toString()
         recipe.description = editDescription.text.toString()
+        val ingredientsFragment =
+            supportFragmentManager.findFragmentById(R.id.recipeIngredientListFragment) as RecipeIngredientEditFragment
+        val ingredients = ingredientsFragment.getIngredients()
+        recipe.ingredients.addAll(ingredients)
+
+        if (recipe.title.isBlank() || recipe.description.isBlank() || ingredients.count() < 1) {
+            Snackbar.make(coordinatorLayout, "Adding recipe failed", Snackbar.LENGTH_LONG)
+                .show()
+            return
+        }
 
         if (imageUri != null) {
             val extension = "jpeg"
@@ -39,6 +49,8 @@ class RecipeEditActivity : AppCompatActivity() {
             imageRef.putFile(imageUri!!)
             recipe.image = imageRef.path
         }
+
+
         val firestore = Firebase.firestore
         firestore.collection("recipes").add(recipe)
             .addOnSuccessListener { finish() }

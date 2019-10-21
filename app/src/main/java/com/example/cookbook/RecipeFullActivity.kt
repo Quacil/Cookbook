@@ -3,6 +3,7 @@ package com.example.cookbook
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.cookbook.model.Recipe
 import com.google.firebase.storage.FirebaseStorage
@@ -24,5 +25,12 @@ class RecipeFullActivity : AppCompatActivity() {
                 .load(image)
                 .into(imageView)
         }
+        val context = this
+        recipe.ingredients?.forEach {
+            val ingredientName = TextView(context)
+            ingredientName.text = it.name
+            ingredients_list.addView(ingredientName)
+        }
+
     }
 }

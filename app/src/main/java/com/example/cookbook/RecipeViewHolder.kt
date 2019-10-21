@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.fragment_recipe.view.*
 
 class RecipeViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mTitleView: TextView = mView.recipeTitle
-    val mDescriptionView: TextView = mView.recipeDescription
+//    val mDescriptionView: TextView = mView.recipeDescription
     val mImageView: ImageView = mView.recipeImage
     override fun toString(): String {
         return super.toString() + " '" + mTitleView.text + "'"

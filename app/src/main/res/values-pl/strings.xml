@@ -9,4 +9,8 @@
     <string name="notification_title">Nowe przepisy</string>
     <string name="notification_content_start">Masz </string>
     <string name="notification_content_end"> nowych przepisów!</string>
+    <string name="ingredient_list">Składniki:</string>
+    <string name="edit_ingredient">Edytuj składnik</string>
+    <string name="add_ingredient">Nowy składnik</string>
+    <string name="recipe_description_title">Opis</string>
 </resources>
