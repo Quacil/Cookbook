@@ -1,12 +1,14 @@
 package com.example.cookbook
 
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookbook.model.Recipe
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), RecipeFragment.OnListFragmentInteractionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +20,9 @@ class MainActivity : AppCompatActivity(), RecipeFragment.OnListFragmentInteracti
             val intent = Intent(this, RecipeEditActivity::class.java)
             startActivity(intent)
         }
+
+        val intentFilter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
+        this.registerReceiver(NetworkChangeReceiver(), intentFilter)
     }
 
     override fun onListFragmentInteraction(item: Recipe?) {

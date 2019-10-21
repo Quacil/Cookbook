@@ -4,4 +4,9 @@
     <string name="action_settings">Ustawienia</string>
     <string name="editTitle">Podaj tytuł</string>
     <string name="editDescription">Podaj opis</string>
+    <string name="channel_name">Nowe przepisy</string>
+    <string name="channel_description">Nowe przepisy</string>
+    <string name="notification_title">Nowe przepisy</string>
+    <string name="notification_content_start">Masz </string>
+    <string name="notification_content_end"> nowych przepisów!</string>
 </resources>
